@@ -56,10 +56,10 @@ pub struct Debounce<N> where N: Unsigned {
 }
 
 impl<N> Debounce<N> where N: Unsigned {
-    pub fn new() -> Self {
+    pub fn new(initial: State) -> Self {
         Self {
             samples: 0,
-            state: State::Released,
+            state: initial,
             _marker: PhantomData
         }
     }
@@ -93,7 +93,7 @@ mod tests {
 
     #[test]
     fn returns_change() {
-        let mut debounce: Debounce<U3> = Debounce::new();
+        let mut debounce: Debounce<U3> = Debounce::new(State::Released);
 
         assert_eq!(Change::NoChange(State::Released), debounce.update(State::Touched));
         assert_eq!(Change::NoChange(State::Released), debounce.update(State::Touched));
