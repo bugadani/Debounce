@@ -1,3 +1,7 @@
+//! This crate implements a simple debouncer
+
+#![cfg_attr(not(test), no_std)]
+
 use typenum::Unsigned;
 use core::marker::PhantomData;
 
